@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quiz.css">
+    <title>Quiz-By Nishi</title>
+</head>
+<body>
+    <div class="quiz-elements">
+        
+    <input type="button" id="left" onclick="back();" value="<<">
+    <div class="main-area">
+        <p class="ques"></p>
+        <img src="img.jpg">
+        <ul class="ans">
+            <li><div style="display:  inline-flex;" class="a"><input type="checkbox" id="a" class="options"><label for="a" id="A"></label><br></div></li>
+            <li><div style="display:  inline-flex;" class="b"><input type="checkbox" id="b" class="options"><label for="b" id="B"></label><br></div></li>
+            <li><div style="display:  inline-flex;" class="c"><input type="checkbox" id="c" class="options"><label for="c" id="C"></label><br></div></li>
+            <li><div style="display:  inline-flex;" class="d"><input type="checkbox" id="d" class="options"><label for="d" id="D"></label><br></div></li>
+        </ul>
+        <div><input type="button" value="Start" id="start" onclick="fn();">
+            <input type="button" value="Submit" id="next" onclick="next_ques();">
+            
+        </div>
+    </div>
+    <input type="button" id="right" onclick="forward();" value=">>">
+    
+    </div>
+
+    
+
+
+    <script src="quiz.js"></script>
+</body>
+</html>
