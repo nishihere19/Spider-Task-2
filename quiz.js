@@ -104,6 +104,7 @@ function fn(){
         document.getElementsByClassName("ques")[0].style.fontSize="40px";
         document.getElementsByClassName("ans")[0].style.height="fit-content";
         document.getElementsByClassName("time")[0].style.display="block";
+        document.getElementsByClassName("best")[0].style.display="none";
         
         
         document.getElementById("start").value="Reset";
@@ -128,6 +129,7 @@ else{
     else if((correct/10)<0.6){
         score-=1;
     }
+    document.getElementsByClassName("best")[0].style.display="block";
     if(localStorage.getItem("highscore")<score){
         var d=new Date();
         localStorage.setItem("highscore",score);
@@ -155,7 +157,8 @@ else{
     time=localStorage.getItem("time");
     bestscore=localStorage.getItem("highscore");
     document.getElementsByClassName("time")[0].style.display="none";
-    document.getElementsByClassName("name")[0].textContent="Best Player:"+ name+". Best Score: "+ bestscore+ ". Date: "+ date+". Time: "+time;
+    document.getElementsByClassName("name")[0].textContent="Best Player:"+ name+" & Best Score: "+ bestscore;
+    document.getElementsByClassName("best")[0].textContent= "Date: "+ date+"& Time: "+time;
     document.getElementById("left").disabled=true;
     document.getElementById("right").disabled=true;
     
