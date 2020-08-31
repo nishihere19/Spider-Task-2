@@ -2,6 +2,11 @@ let all_ques=[];
 var clicked=0;
 var A=document.getElementById("A");
 var lastindex=0;
+localStorage.setItem("initialised","yes");
+if(localStorage.getItem("initialised")=="null"){
+    console.log("set");
+    localStorage.setItem("highscore",0);
+}
 A.addEventListener('click',function(e){
     console.log("A");
     next_ques("A");
@@ -94,6 +99,7 @@ function fn(){
         document.getElementsByClassName("img")[0].style.display="none";
         document.getElementsByClassName("ques")[0].style.fontSize="40px";
         document.getElementsByClassName("ans")[0].style.height="fit-content";
+        document.getElementsByClassName("time")[0].style.display="block";
         
         
         document.getElementById("start").value="Reset";
@@ -111,17 +117,35 @@ function fn(){
         started="true";
     }
 else{
+    console.log(localStorage.getItem("highscore"));
+    if(localStorage.getItem("highscore")<score){
+        var d=new Date();
+        localStorage.setItem("highscore",score);
+        console.log(localStorage.getItem("highscore"),score);
+        localStorage.setItem("best",name);
+        localStorage.setItem("date",d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear());
+        console.log(localStorage.getItem("date"));
+        localStorage.setItem("time",d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
+        console.log(localStorage.getItem("time"));
+        localStorage.setItem("besttime",x);
+    }
     reset_time();
     if(score<8){
-        document.getElementsByClassName("name")[0].style.display="none";
+        
         document.getElementsByClassName("ques")[0].textContent="Your Score is: "+ score+". Better luck next time," + name+"!!";
         document.getElementsByClassName("sad")[0].style.display="inline-block";
     }
     else{
-        document.getElementsByClassName("name")[0].style.display="none";
+        
         document.getElementsByClassName("ques")[0].textContent="Your Score is: "+ score+". Well done," +name+"!!";
         document.getElementsByClassName("happy")[0].style.display="inline-block";
     }
+    var date, bestscore, time;
+    date=localStorage.getItem("date");
+    time=localStorage.getItem("time");
+    bestscore=localStorage.getItem("highscore");
+    document.getElementsByClassName("time")[0].style.display="none";
+    document.getElementsByClassName("name")[0].textContent="Best Player:"+ name+". Best Score: "+ bestscore+ ". Date: "+ date+". Time: "+time;
     document.getElementById("left").disabled=true;
     document.getElementById("right").disabled=true;
     
@@ -412,7 +436,7 @@ function start(){
 
 function increment(){
     x++;
-    document.getElementsByClassName("time")[0].textContent="Time Left: "+(200-x);
+    document.getElementsByClassName("time")[0].textContent="Your Time Left: "+(200-x);
     if(x==200){
         fn();
     }
