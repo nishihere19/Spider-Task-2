@@ -95,6 +95,10 @@ function fn(){
     
     if(started=="false"){
         start();
+        correct=0;
+        incorrect=0;
+        c=0;
+        
         //console.log("started");
         document.getElementsByClassName("img")[0].style.display="none";
         document.getElementsByClassName("ques")[0].style.fontSize="40px";
@@ -118,6 +122,12 @@ function fn(){
     }
 else{
     console.log(localStorage.getItem("highscore"));
+    if((correct/10)<0.3){
+        score-=2;
+    }
+    else if((correct/10)<0.6){
+        score-=1;
+    }
     if(localStorage.getItem("highscore")<score){
         var d=new Date();
         localStorage.setItem("highscore",score);
@@ -182,10 +192,15 @@ var selected;
 var selectedId, ansId;
 var score=0;
 var status;
-
+var lag=0;
+var c=0;
+var correct=0;
+var incorrect=0;
 function next_ques(d){
     //document.getElementsByClassName("ques")[0].textContent=all_ques[0].ques;
     console.log(d);
+    lag=x-c;
+    c=x;
    
     if(index==0){
         document.getElementById("left").disabled=true;
@@ -226,7 +241,17 @@ console.log(all_ques[index].chosen,all_ques[index].ans);
         document.getElementsByClassName(selectedId)[0].style.border="5px solid green";
         //document.getElementsByClassName(selectedId)[0].style.backgroundColor="light-green";
         document.getElementById((index+1).toString()).style.background="green";
-        score++;
+        correct++;
+        if(lag<4){
+            score++;
+        }
+        else if(lag<6){
+            score+=0.8;
+        }
+        else{
+            score+=0.5;
+        }
+        lag=0;
         status=true;
     }
     else{
@@ -239,6 +264,7 @@ console.log(all_ques[index].chosen,all_ques[index].ans);
         //document.getElementsByClassName(ansId)[0].style.backgroundColor="light-green";
         document.getElementById((index+1).toString()).style.background="red";
         status=false;
+        incorrect++;
 
 
     }
