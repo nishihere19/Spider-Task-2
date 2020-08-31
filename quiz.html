@@ -12,18 +12,41 @@
     <input type="button" id="left" onclick="back();" value="<<">
     <div class="main-area">
         <p class="ques"></p>
-        <img src="img.jpg">
+        <img class="img" src="img.jpg">
+        <img class=" sad" src="sad.jpg" style="display:none; align-self: center; width: 200px; height:200px;">
+        <img class="happy" src="happy.png" style="display:none; align-self: center; width: 200px; height:200px;">
         <ul class="ans">
             <li><div style="display:  inline-flex;" class="a"><label for="a" id="A"></label><br></div></li>
             <li><div style="display:  inline-flex;" class="b"><label for="b" id="B"></label><br></div></li>
             <li><div style="display:  inline-flex;" class="c"><label for="c" id="C"></label><br></div></li>
             <li><div style="display:  inline-flex;" class="d"><label for="d" id="D"></label><br></div></li>
         </ul>
-        <div><input type="button" value="Start" id="start" onclick="fn();">
+        <div>
+            <input type="button" value="Start" id="start" onclick="fn();" style="margin-top: 5rem;">
+            <div style="display: block;">
+                <label class="name" >Your Name PLease!</label>
+                <input id="name" type="text" style="height:30px" >
+                <label class="time" style="display: none;"></label></div>
+                
+            
             
         </div>
     </div>
     <input type="button" id="right" onclick="forward();" value=">>">
+    <div class="nav">
+        <ul>
+            <li id="1">1</li>
+            <li id="2">2</li>
+            <li id="3">3</li>
+            <li id="4">4</li>
+            <li id="5">5</li>
+            <li id="6">6</li>
+            <li id="7">7</li>
+            <li id='8'>8</li>
+            <li id="9">9</li>
+            <li id="10">10</li>
+        </ul>
+    </div>
     
     </div>
 
