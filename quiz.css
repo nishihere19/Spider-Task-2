@@ -34,7 +34,7 @@ body{
     margin-bottom: 2rem;
     position: relative;
     font-weight: bold;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,88,121,1) 39%, rgb(5, 21, 24) 100%);
+    
   color: rgb(206, 252, 206);
     width: 100%;
     
@@ -103,7 +103,7 @@ label{
   }
   #left{
     position: relative;
-    top: 30%;
+    align-self: center;
     float: left;
     width: 50px;
     height: 100px;
@@ -122,7 +122,7 @@ label{
 }
 #right{
     position: relative;
-    top: 30%;
+    align-self: center;
     float: right;
     width: 50px;
     height: 100px;
