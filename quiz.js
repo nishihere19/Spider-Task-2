@@ -1,4 +1,29 @@
 let all_ques=[];
+var clicked=0;
+var A=document.getElementById("A");
+A.addEventListener('click',function(e){
+    console.log("A");
+    next_ques("A");s
+    
+})
+var B=document.getElementById("B");
+B.addEventListener('click',function(e){
+    console.log("B");
+    next_ques("B");
+    
+})
+var C=document.getElementById("C");
+C.addEventListener('click',function(e){
+    console.log("C");
+    next_ques("C");
+    
+})
+var D=document.getElementById("D");
+D.addEventListener('click',function(e){
+    console.log("D");
+    next_ques("D");
+    
+})
 function feed(){
     let obj={chosen:"null",ques: "Which of the following statement is/are correct about Favipiravir?", a: " Favipiravir is an antiviral COVID-19 drug.", b:" Glenmark Pharmaceuticals under the brand name FabiFlu has launched an antiviral drug Favipiravir.", c: "It is India's first COVID-19 drug launched, priced at Rs 103 per tablet.", d:"All the above are correct.", ans: "D"}
     all_ques.push(obj);
@@ -25,24 +50,20 @@ document.getElementsByClassName("ques")[0].textContent="Welcome To The Quiz!!";
 document.getElementsByClassName("ques")[0].style.fontWeight="Bold";
 document.getElementsByClassName("ques")[0].style.fontSize="70px";
 document.getElementsByClassName("ans")[0].style.height="0";
-for(i=0;i<4;i++){
-    document.getElementsByClassName("options")[i].style.display="none";
-}
+
 var started="false";
 function fn(){
     //console.log(started);
     document.getElementById("left").disabled=false;
     document.getElementById("right").disabled=false;
-    document.getElementById("next").disabled=false;
+    
     if(started=="false"){
         //console.log("started");
         document.getElementsByTagName("img")[0].style.display="none";
         document.getElementsByClassName("ques")[0].style.fontSize="40px";
         document.getElementsByClassName("ans")[0].style.height="70%";
         
-        for(i=0;i<4;i++){
-            document.getElementsByClassName("options")[i].style.display="block";
-        }
+        
         document.getElementById("start").value="Reset";
         
         
@@ -56,19 +77,15 @@ function fn(){
         started="true";
     }
 else{
-    if(selectedId){
-        document.getElementById(selectedId).checked=false;
-    }
+    
     document.getElementById("left").disabled=true;
     document.getElementById("right").disabled=true;
-    document.getElementById("next").disabled=true;
+    
     document.getElementsByClassName("ques")[0].textContent="Your Score is: "+ score;
     document.getElementsByClassName("ques")[0].style.fontWeight="Bold";
     document.getElementsByClassName("ques")[0].style.fontSize="70px";
     document.getElementsByClassName("ans")[0].style.height="0";
-    for(i=0;i<4;i++){
-    document.getElementsByClassName("options")[i].style.display="none";
-    }
+    
     if(all_ques[index].chosen==all_ques[index].ans){
         document.getElementsByClassName(all_ques[index].chosen.toLowerCase())[0].style.border="none";
         //document.getElementsByClassName(all_ques[index-1].chosen.toLowerCase())[0].style.backgroundColor="white";
@@ -96,9 +113,10 @@ var selectedId, ansId;
 var score=0;
 var status;
 
-function next_ques(){
+function next_ques(d){
     //document.getElementsByClassName("ques")[0].textContent=all_ques[0].ques;
-    document.getElementById("next").disabled=true;
+    console.log(d);
+   
     if(index==0){
         document.getElementById("left").disabled=true;
     }
@@ -113,21 +131,25 @@ function next_ques(){
     }
     //console.log("next_ques");
     
-    if(document.getElementById("a").checked==true){
+    if(d=="A" && all_ques[index].chosen=="null"){
             all_ques[index].chosen="A";
             selectedId="a";
+            clicked++;
     }
-    else if(document.getElementById("b").checked==true){
+    else if(d=="B" && all_ques[index].chosen=="null"){
         all_ques[index].chosen="B";
         selectedId="b";
+        clicked++;
 }
-else if(document.getElementById("c").checked==true){
+else if(d=="C" && all_ques[index].chosen=="null"){
     all_ques[index].chosen="C";
     selectedId="c";
+    clicked++;
 }
-else{
+else if(d=='D' && all_ques[index].chosen=="null"){
     all_ques[index].chosen="D";
     selectedId="d";
+    clicked++;
 }
 console.log(all_ques[index].chosen,all_ques[index].ans);
     if(all_ques[index].chosen==all_ques[index].ans){
@@ -148,6 +170,11 @@ console.log(all_ques[index].chosen,all_ques[index].ans);
 
 
     }
+    
+    if(index==9){
+        fn();
+    }
+    
 }
 function forward(){
     //console.log("forward",selectedId,status);
@@ -165,15 +192,8 @@ function forward(){
         document.getElementById("right").disabled=false;
     }
     //console.log("next_ques");
-    if(selectedId){
-        document.getElementById(selectedId).checked=false;
-    }
-    if(all_ques[index].chosen!="null"){
-        document.getElementById("next").disabled=true;
-    }
-    else{
-        document.getElementById("next").disabled=false;
-    }
+    
+    
     if(all_ques[index-1].chosen==all_ques[index-1].ans){
         document.getElementsByClassName(all_ques[index-1].chosen.toLowerCase())[0].style.border="none";
         //document.getElementsByClassName(all_ques[index-1].chosen.toLowerCase())[0].style.backgroundColor="white";
@@ -234,15 +254,8 @@ function back(){
         document.getElementById("right").disabled=false;
     }
     //console.log("next_ques");
-    if(selectedId){
-        document.getElementById(selectedId).checked=false;
-    }
-    if(all_ques[index].chosen!="null"){
-        document.getElementById("next").disabled=true;
-    }
-    else{
-        document.getElementById("next").disabled=false;
-    }
+    
+    
     if(all_ques[index+1].chosen==all_ques[index+1].ans){
         document.getElementsByClassName(all_ques[index+1].chosen.toLowerCase())[0].style.border="none";
         //document.getElementsByClassName(all_ques[index+1].chosen.toLowerCase())[0].style.backgroundColor="white";
